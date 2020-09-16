@@ -1,25 +1,22 @@
-package xsd;
-import java.text.NumberFormat;
-import java.util.Locale;
-
+package xiangsidu;
 public class Computeclass {
     /*
-     * è®¡ç®—ç›¸ä¼¼åº¦
+     * ¼ÆËãÏàËÆ¶È
      * */
     public static double SimilarDegree(String strA, String strB){
         String newStrA = removeSign(strA);
         String newStrB = removeSign(strB);
-        //ç”¨è¾ƒå¤§çš„å­—ç¬¦ä¸²é•¿åº¦ä½œä¸ºåˆ†æ¯ï¼Œç›¸ä¼¼å­ä¸²ä½œä¸ºåˆ†å­è®¡ç®—å‡ºå­—ä¸²ç›¸ä¼¼åº¦
+        //ÓÃ½Ï´óµÄ×Ö·û´®³¤¶È×÷Îª·ÖÄ¸£¬ÏàËÆ×Ó´®×÷Îª·Ö×Ó¼ÆËã³ö×Ö´®ÏàËÆ¶È
         int temp = Math.max(newStrA.length(), newStrB.length());
         int temp2 = longestCommonSubstring(newStrA, newStrB);
         return temp2 * 1.0 / temp;
     }
     /*
-     * å°†å­—ç¬¦ä¸²çš„æ‰€æœ‰æ•°æ®ä¾æ¬¡å†™æˆä¸€è¡Œ
+     * ½«×Ö·û´®µÄËùÓÐÊý¾ÝÒÀ´ÎÐ´³ÉÒ»ÐÐ
      * */
     public static String removeSign(String str) {
         StringBuffer sb = new StringBuffer();
-        //éåŽ†å­—ç¬¦ä¸²str,å¦‚æžœæ˜¯æ±‰å­—æ•°å­—æˆ–å­—æ¯ï¼Œåˆ™è¿½åŠ åˆ°abä¸Šé¢
+        //±éÀú×Ö·û´®str,Èç¹ûÊÇºº×ÖÊý×Ö»ò×ÖÄ¸£¬Ôò×·¼Óµ½abÉÏÃæ
         for (char item : str.toCharArray())
             if (charReg(item)){
                 sb.append(item);
@@ -27,8 +24,8 @@ public class Computeclass {
         return sb.toString();
     }
     /*
-     * åˆ¤æ–­å­—ç¬¦æ˜¯å¦ä¸ºæ±‰å­—ï¼Œæ•°å­—å’Œå­—æ¯ï¼Œ
-     * å› ä¸ºå¯¹ç¬¦å·è¿›è¡Œç›¸ä¼¼åº¦æ¯”è¾ƒæ²¡æœ‰å®žé™…æ„ä¹‰ï¼Œæ•…ç¬¦å·ä¸åŠ å…¥è€ƒè™‘èŒƒå›´ã€‚
+     * ÅÐ¶Ï×Ö·ûÊÇ·ñÎªºº×Ö£¬Êý×ÖºÍ×ÖÄ¸£¬
+     * ÒòÎª¶Ô·ûºÅ½øÐÐÏàËÆ¶È±È½ÏÃ»ÓÐÊµ¼ÊÒâÒå£¬¹Ê·ûºÅ²»¼ÓÈë¿¼ÂÇ·¶Î§¡£
      * */
     public static boolean charReg(char charValue) {
         return (charValue >= 0x4E00 && charValue <= 0X9FA5) || (charValue >= 'a' && charValue <= 'z')
@@ -37,14 +34,14 @@ public class Computeclass {
 
 
     /*
-     * æ±‚å…¬å…±å­ä¸²ï¼Œé‡‡ç”¨åŠ¨æ€è§„åˆ’ç®—æ³•ã€‚
-     * å…¶ä¸è¦æ±‚æ‰€æ±‚å¾—çš„å­—ç¬¦åœ¨æ‰€ç»™çš„å­—ç¬¦ä¸²ä¸­æ˜¯è¿žç»­çš„ã€‚
+     * Çó¹«¹²×Ó´®£¬²ÉÓÃ¶¯Ì¬¹æ»®Ëã·¨¡£
+     * Æä²»ÒªÇóËùÇóµÃµÄ×Ö·ûÔÚËù¸øµÄ×Ö·û´®ÖÐÊÇÁ¬ÐøµÄ¡£
      *
      * */
     public static int longestCommonSubstring(String str1, String str2) {
         int length1 = (short) str1.length();
         int length2 = (short) str2.length();
-        int[][] result = new int[2][length2 + 1];   //æ»šåŠ¨æ•°ç»„,èŠ‚çœç©ºé—´åªä¾èµ–äºŽå‰é¢çš„ä¸¤ä¸ªè§£
+        int[][] result = new int[2][length2 + 1];   //¹ö¶¯Êý×é,½ÚÊ¡¿Õ¼äÖ»ÒÀÀµÓÚÇ°ÃæµÄÁ½¸ö½â
         for (int i = 1; i <= length1; i++) {
             for (int j = 1; j <= length2; j++) {
                 if (str1.charAt(i - 1) == str2.charAt(j - 1))
@@ -54,12 +51,5 @@ public class Computeclass {
             }
         }
         return result[length1 % 2][length2];
-    }
-
-    /*
-     * ç»“æžœè½¬æ¢æˆç™¾åˆ†æ¯”å½¢å¼
-     * */
-    public static String similarityResult(double resule){
-        return  NumberFormat.getPercentInstance(new Locale( "en ", "US ")).format(resule);
     }
 }
